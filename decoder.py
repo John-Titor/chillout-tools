@@ -8,15 +8,13 @@
 # Packet format:
 # =============
 #
-# c0 LL AA PP... SS 01
-#
-# LL is packet length -1
-# SS is sender address, 0x01 = compressor, 0x03 = remote
-# PP is packet data
-# SS is CRC-8 with final xor 0x30 of PP bytes
-#
 # Example: c00e0100080002078e000200008401
 #            LLAAPPPPPPPPPPPPPPPPPPPPSS
+#
+# LL is packet length -1
+# AA is sender address, 1, 2 = compressor, 3 = remote
+# PP is packet data
+# SS is CRC-8 with final Xor of PP bytes based on AA value; 1 = 0x30, 2 = 0xea, 3 = 0xe9
 #
 #
 # Remote packet data:
