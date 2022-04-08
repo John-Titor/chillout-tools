@@ -5,6 +5,14 @@
 # Interface is RS-485 @ 115200n81. Other units (pro, etc.) look to use a similar
 # protocol at 9600n81 but not yet verified / supported here.
 #
+# Circular connector pinout at the compressor unit (pin numbers are marked on the
+# remote cable connector face):
+#
+#  1: +5V
+#  2: RS-485 A
+#  3: RS-485 B
+#  4: GND
+#
 # Packet format:
 # =============
 #
@@ -32,14 +40,13 @@
 #
 # multi-byte fields are big-endian
 #
-# 010808020928010108e3
 # PPxxxxTTCCCCxxxxRRRR
 #
 # PP is power mode (see remote)
 # TT is set temperature (see remote)
-# CCCC is coolant temperature, resolution 0.01°C
-# RRRR is "speed" (TBD)
-
+# CCCC is coolant temperature in 1/100°C
+# RRRR is compressor speed in rpm.
+#
 
 import serial
 import crccheck
@@ -100,3 +107,4 @@ while True:
     if addr == 1:
         mode, _, _, set_temp, coolant_temp, _, _, rpm = struct.unpack('>BBBBHBBH', data)
         print(f'mode {power_modes[mode]}  set {set_temps[set_temp]}°C  coolant {coolant_temp / 100}°C  compressor {rpm}rpm')
+    elif addr == 2:
