@@ -1,0 +1,3 @@
+[submodule "AnalogInterface/lpc8xx_classlib"]
+	path = AnalogInterface/lpc8xx_classlib
+	url = https://github.com/John-Titor/lpc8xx_classlib.git

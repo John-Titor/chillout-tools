@@ -1,0 +1,28 @@
+LPC 810 pin map for Chillout controller
+---------------------------------------
+
+mandatory
+---------
+serial rx
+serial tx
+tx enable
+pwm in
+
+optional
+--------
+reset
+LED driver
+debug
+
+
+Coolshirt dual controller knob position : PWM duty cycle
+--------------------------------------------------------
+
+0: 1.5%
+1/4: 35%
+1/2: 75%
+3/4: 90%
+1: 100%
+
+approximate curve fit (quadratic regression):
+	y = -0.8285714 + 1.846286*x - 0.008342857*x^2 
