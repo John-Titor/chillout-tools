@@ -32,7 +32,7 @@
 #
 # PP is power mode; 0x00 = off, 0x01 = eco, 0x03 = max
 # TT is set temperature, 1 = min (1.7°C, units seem to be ~2.7°C) 10 = max
-# MM is 0x00 when changing PP, 0x01 when changing MM
+# MM is 0x00 when changing PP, 0x01 when changing TT
 #
 #
 # Compressor packet data:
@@ -52,7 +52,8 @@ import serial
 import crccheck
 import struct
 
-ser = serial.Serial('/dev/cu.usbserial-A106TL0J', 115200)
+#ser = serial.Serial('/dev/cu.usbserial-A106TL0J', 115200)
+ser = serial.Serial('/dev/cu.SLAB_USBtoUART', 115200)
 crc_alg = {
     1: crccheck.crc.Crc(width=8,
                         poly=0x07,
@@ -77,7 +78,7 @@ crc_alg = {
                         check_result=0xf4),
     }
 
-power_modes = ['off', 'eco', '', 'max']
+power_modes = ['off', 'eco', 'off', 'max']
 set_temps = [0, 1.3, 4.4, 7.2, 10.0, 12.7, 15.5, 18.3, 21.1, 23.9, 26.7]
 
 while True:
@@ -107,4 +108,3 @@ while True:
     if addr == 1:
         mode, _, _, set_temp, coolant_temp, _, _, rpm = struct.unpack('>BBBBHBBH', data)
         print(f'mode {power_modes[mode]}  set {set_temps[set_temp]}°C  coolant {coolant_temp / 100}°C  compressor {rpm}rpm')
-    elif addr == 2:
