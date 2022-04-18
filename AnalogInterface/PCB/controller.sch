@@ -6412,7 +6412,6 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <attribute name="DRAWING_NAME" x="188.2775" y="1.27" size="2.54" layer="94" ratio="10"/>
 <attribute name="LAST_DATE_TIME" x="187.96" y="7.62" size="2.54" layer="94" ratio="10"/>
 </instance>
-<instance part="FRAME1" gate="G$3" x="2.54" y="210.82" smashed="yes"/>
 <instance part="IC1" gate="E1" x="213.36" y="91.44" smashed="yes">
 <attribute name="NAME" x="205.74" y="97.79" size="1.778" layer="95"/>
 <attribute name="VALUE" x="205.74" y="81.28" size="1.778" layer="96"/>
